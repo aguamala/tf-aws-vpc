@@ -67,6 +67,9 @@ resource "aws_subnet" "public" {
   availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
   count             = "${length(var.public_subnets)}"
 
+#data.aws_availability_zones.available.names
+#${cidrsubnet(var.cidr, 8, count.index + 100)}
+
   tags {
     Name = "${var.name}-public"
   }
