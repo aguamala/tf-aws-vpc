@@ -29,7 +29,7 @@ resource "aws_route" "public_internet_gateway" {
 #--------------------------------------------------------------
 resource "aws_subnet" "private" {
   vpc_id            = "${aws_vpc.mod.id}"
-  cidr_block        = "${cidrsubnet(var.cidr, var.cidrsubnet_newbits, count.index + 1)}"
+  cidr_block        = "${cidrsubnet(var.cidr, var.cidrsubnet_newbits, count.index + var.cidrsubnet_netnum_private)}"
   availability_zone = "${var.azs[count.index]}"
   count             = "${length(var.azs)}"
   tags = "${merge(var.tags, map("Name", "${var.name}-private"))}"
@@ -52,7 +52,7 @@ resource "aws_route_table_association" "private" {
 #--------------------------------------------------------------
 resource "aws_subnet" "public" {
   vpc_id            = "${aws_vpc.mod.id}"
-  cidr_block        = "${cidrsubnet(var.cidr, var.cidrsubnet_newbits, count.index + 100)}"
+  cidr_block        = "${cidrsubnet(var.cidr, var.cidrsubnet_newbits, count.index + var.cidrsubnet_netnum_public)}"
   availability_zone = "${var.azs[count.index]}"
   count             = "${length(var.azs)}"
   tags = "${merge(var.tags, map("Name", "${var.name}-public"))}"

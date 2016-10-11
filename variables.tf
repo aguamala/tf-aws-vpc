@@ -54,3 +54,11 @@ variable "private_public_subnets_per_az" {
 variable "cidrsubnet_newbits" {
   default = 8
 }
+
+variable "cidrsubnet_netnum_private" {
+  default = 1
+}
+
+variable "cidrsubnet_netnum_public" {
+  default = 101
+}
