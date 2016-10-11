@@ -3,13 +3,13 @@ variable "name" {}
 variable "cidr" {}
 
 variable "public_subnets" {
-  description = "A list of public subnets inside the VPC."
-  default     = []
+  description = "Number of public subnets inside the VPC."
+  default     = 1
 }
 
 variable "private_subnets" {
-  description = "A list of private subnets inside the VPC."
-  default     = []
+  description = "Number of private subnets inside the VPC."
+  default     = 1
 }
 
 variable "azs" {
@@ -43,7 +43,14 @@ variable "public_propagating_vgws" {
 }
 
 variable "tags" {
-  type = "list"
-  description = "A list of tags to add"
-  default     = []
+  description = "A map of tags to add"
+  default     = {}
+}
+
+variable "private_public_subnets_per_az" {
+  default = 1
+}
+
+variable "cidrsubnet_newbits" {
+  default = 8
 }
