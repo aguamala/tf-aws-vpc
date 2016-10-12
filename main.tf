@@ -32,7 +32,7 @@ resource "aws_subnet" "private" {
   cidr_block        = "${cidrsubnet(var.cidr, var.cidrsubnet_newbits, count.index + var.cidrsubnet_netnum_private)}"
   availability_zone = "${var.azs[count.index]}"
   count             = "${length(var.azs)}"
-  tags = "${merge(var.tags, map("Name", "${var.name}-private"))}"
+  tags = "${merge(var.tags, map("Name", "${var.name}-private-${count.index}"))}"
 }
 
 resource "aws_route_table" "private" {
@@ -55,7 +55,7 @@ resource "aws_subnet" "public" {
   cidr_block        = "${cidrsubnet(var.cidr, var.cidrsubnet_newbits, count.index + var.cidrsubnet_netnum_public)}"
   availability_zone = "${var.azs[count.index]}"
   count             = "${length(var.azs)}"
-  tags = "${merge(var.tags, map("Name", "${var.name}-public"))}"
+  tags = "${merge(var.tags, map("Name", "${var.name}-public-${count.index}"))}"
   map_public_ip_on_launch = "${var.map_public_ip_on_launch}"
 }
 
