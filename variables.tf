@@ -47,10 +47,6 @@ variable "tags" {
   default     = {}
 }
 
-variable "private_public_subnets_per_az" {
-  default = 1
-}
-
 variable "cidrsubnet_newbits" {
   default = 8
 }
