@@ -10,6 +10,10 @@ output "vpc_id" {
   value = "${aws_vpc.mod.id}"
 }
 
+output "vpc_arn" {
+  value = "${aws_vpc.mod.arn}"
+}
+
 output "public_route_table_id" {
   value = "${aws_route_table.public.id}"
 }
